@@ -1,0 +1,153 @@
+/* Yahtzee board */
+@font-face {
+  font-family: 'Paytone One';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/paytoneone/v13/0nksC9P7MfYHj2oFtYm2ChTtgP4.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/roboto/v29/KFOmCnqEu92Fr1Mu4mxP.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/roboto/v29/KFOlCnqEu92Fr1MmWUlfBBc9.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Indie Flower';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/indieflower/v12/m8JVjfNVeKWVnh3QMuKkFcZVaUuC.ttf) format('truetype');
+}
+:root {
+  font: normal normal 9pt/1.25 Roboto;
+  -webkit-font-kerning: normal;
+          font-kerning: normal;
+}
+@media screen {
+  :root {
+    min-height: 100vh;
+    perspective: 12in;
+    background-color: #277714;
+    background-image: radial-gradient(ellipse at 50% 25%, transparent, #1a2005);
+  }
+}
+body {
+  line-height: inherit;
+}
+.section,
+.yahtzee {
+  width: 5in;
+  margin-left: auto;
+  margin-right: auto;
+}
+.font-xs,
+.yahtzee__score-card .how-to-score,
+.desc .alt {
+  font-size: 0.6rem;
+}
+.font-sm,
+.yahtzee__score-card .head {
+  font-size: 0.8rem;
+}
+.font-bold,
+.yahtzee__score-card .head,
+.desc {
+  font-weight: 700;
+}
+.pad-regular,
+.yahtzee__score-card td,
+.yahtzee__score-card th {
+  padding: 0rem 0.67rem;
+}
+.bordered-thin,
+.yahtzee__score-card,
+.yahtzee__score-card tbody > tr > td,
+.yahtzee__score-card tbody > tr > th {
+  border: 0.0625px solid currentColor;
+}
+.yahtzee {
+  padding: 1.5rem 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+@media screen {
+  /*.yahtzee {
+    background-color: white;
+    box-shadow: 0.5rem 0.5rem 0rem rgba(0, 0, 0, 0.25);
+    transform: translatez(-50rem) rotatex(35deg) rotateZ(20deg);
+    transition: transform 750ms, box-shadow 750ms;
+  }*/
+  .yahtzee {
+    background-color: yellow;
+    box-shadow: 0.5rem 0.5rem 0rem rgba(0, 0, 0, 0.25);
+    transform: none;
+    box-shadow: 0 1rem 5rem 1rem rgba(0, 0, 0, 0.25);
+  }
+}
+.yahtzee__heading {
+  font-family: Paytone One;
+  font-size: 3rem;
+  margin-top: -1rem;
+}
+.yahtzee__score-card {
+  padding: 1px;
+  border-radius: 0.125rem;
+}
+.yahtzee__score-card table {
+  width: 100%;
+}
+.yahtzee__score-card .head {
+  text-transform: uppercase;
+}
+.yahtzee__score-card .head > th:nth-child(1) {
+  text-align: left;
+}
+.yahtzee__score-card td,
+.yahtzee__score-card th {
+  vertical-align: middle;
+  height: 2.25rem;
+}
+.yahtzee__score-card .how-to-score {
+  width: 15%;
+}
+.yahtzee__score-card tfoot .desc .primary {
+  text-transform: uppercase;
+}
+.yahtzee__score-card .lower .head th {
+  border: 0;
+}
+.desc {
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+.desc .primary {
+  flex-grow: 1;
+}
+.desc .alt {
+  text-align: center;
+  width: 35%;
+}
+.desc .die {
+  font-size: 2rem;
+  line-height: 1;
+}
+.how-to-score:empty::after {
+  content: '\002192';
+  font-size: 1.6rem;
+}
+input.t {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  text-align: center;
+  width: 4ch;
+  font: normal normal 12pt Indie Flower;
+}
+
