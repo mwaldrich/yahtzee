@@ -1,0 +1,17 @@
+.roll {
+    width: 10%;
+    min-height: 100%;
+    line-height: inherit;
+    background-color: white;
+    margin-left: 20px;
+    margin-top: 2rem;
+    float: left;
+}
+
+.die {
+  font-size: 8rem;
+  line-height: 1;
+  color: black;
+  background-color: white;
+  /*width: 2rem;*/
+}

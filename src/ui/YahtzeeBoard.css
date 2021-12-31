@@ -44,6 +44,7 @@ body {
 .yahtzee {
   width: 40%;
   margin-left: 20px;
+  float: left;
   /*margin-right: auto;*/
 }
 .font-xs,
@@ -84,7 +85,7 @@ body {
     transition: transform 750ms, box-shadow 750ms;
   }*/
   .yahtzee {
-    background-color: yellow;
+    background-color: white;
     box-shadow: 0.5rem 0.5rem 0rem rgba(0, 0, 0, 0.25);
     transform: none;
     box-shadow: 0 1rem 5rem 1rem rgba(0, 0, 0, 0.25);
