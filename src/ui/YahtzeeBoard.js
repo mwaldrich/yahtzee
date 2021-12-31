@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import './YahtzeeBoard.css'; // Tell webpack that Button.js uses these styles
 
 class YahtzeeBoard extends Component {
+
     render() {
-        // You can use them as regular CSS styles
+        // The yahtzee state is avaiable with
+        //     this.props.state
         return <div class="yahtzee">
             <h1 class="yahtzee__heading">Yahtzee</h1>
             <div class="yahtzee__score-card">
