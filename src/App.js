@@ -4,6 +4,7 @@ import YahtzeeState from './backend/YahtzeeState'
 import GameBackground from './ui/GameBackground'
 import YahtzeeBoard from './ui/YahtzeeBoard';
 import Roll from './ui/Roll'
+import Goal from './ui/Goal'
 
 /*
 
@@ -17,6 +18,7 @@ function App() {
             } /> 
 
           <Roll />
+          <Goal />
           <GameBackground />
 
         </div>
