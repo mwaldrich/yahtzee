@@ -1,0 +1,16 @@
+.prog {    
+    width: 30%;
+    min-height: 100%;
+    line-height: inherit;
+    background-color: white;
+    margin-left: 20px;
+    margin-top: 2rem;
+    font-size: 3rem;
+    float: left;
+}
+
+.diceRoll {
+    background-color: white;
+    padding-left: 10%;
+    align-items: center;
+}
