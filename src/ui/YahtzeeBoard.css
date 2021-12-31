@@ -40,10 +40,11 @@ body {
   line-height: inherit;
 }
 .section,
+
 .yahtzee {
-  width: 5in;
-  margin-left: auto;
-  margin-right: auto;
+  width: 40%;
+  margin-left: 20px;
+  /*margin-right: auto;*/
 }
 .font-xs,
 .yahtzee__score-card .how-to-score,
