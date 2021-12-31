@@ -12,12 +12,12 @@ import Roll from './ui/Roll'
 function App() {
     return (
         <div className="App">
-          <GameBackground />
           <YahtzeeBoard state={
             new YahtzeeState([1, 2, 3, 4, 5, 6], [7, 8, 9, 10, 11, 12, 13])
             } /> 
 
           <Roll />
+          <GameBackground />
 
         </div>
     );
