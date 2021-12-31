@@ -3,5 +3,5 @@
 To run this project in a dev environment, run:
 ```sh
 npm install
-npm run
+npm start
 ```
