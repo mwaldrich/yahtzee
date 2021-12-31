@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Roll.css'; // Tell webpack that Button.js uses these styles
 
-class Roll extends Component {
+class Goal extends Component {
   render() {
       // You can use them as regular CSS styles
       return <>
@@ -12,10 +12,10 @@ class Roll extends Component {
                 <div className="die">&#x2684;</div>
                 <div className="die">&#x2684;</div>
                 <div className="dieTitle">Play</div>
-                <div className="dieTitle">Roll</div>
+                <div className="dieTitle">Goal</div>
             </div>
       </>;
   }
 }
 
-export default Roll;
+export default Goal;

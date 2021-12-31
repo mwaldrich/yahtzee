@@ -15,3 +15,10 @@
   background-color: white;
   /*width: 2rem;*/
 }
+
+.dieTitle {
+  font-size: 4rem;
+  line-height: 1;
+  color: black;
+  background-color: white;
+}
