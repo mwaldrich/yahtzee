@@ -3,6 +3,55 @@ import './YahtzeeBoard.css'; // Tell webpack that Button.js uses these styles
 
 class YahtzeeBoard extends Component {
 
+    toUiString(num) {
+        //  returns a blank string if null
+        //  for an empty space on the board
+        if(num === null) {
+            return "" 
+        } else {
+            return num
+        }
+    }
+
+    totalScoreUpper() {
+        //calculate upper score before bonus
+        let total = 0
+        let array = this.props.state.upper
+        for(let i=0; i < array.length; i++) {
+            total+=array[i]
+        }
+        console.log(total)
+        return total
+    }
+
+    upperBonus() {
+        if(this.totalScoreUpper() >= 63){
+            return 35
+        } else {
+            return 0
+        }
+    }
+
+    finalScoreUpper() {
+        return this.totalScoreUpper() + this.upperBonus()
+    }
+
+    finalScoreLower() {
+        //calculate lower score
+        let total = 0
+        let array = this.props.state.lower
+        for(let i=0; i < array.length; i++) {
+            total+=array[i]
+        }
+        return total
+    }
+
+    finalScore() {
+        //return the value of the final score
+        return this.finalScoreUpper() + this.finalScoreLower()
+    }
+
+
     render() {
         // The yahtzee state is avaiable with
         //     this.props.state
@@ -15,11 +64,6 @@ class YahtzeeBoard extends Component {
                             <th>Upper Section</th>
                             <th>How to Score</th>
                             <th>Game #1</th>
-                            <th>Game #2</th>
-                            <th>Game #3</th>
-                            <th>Game #4</th>
-                            <th>Game #5</th>
-                            <th>Game #6</th>
                         </tr>
                         <tr>
                             <th>
@@ -29,12 +73,7 @@ class YahtzeeBoard extends Component {
                                 </div>
                             </th>
                             <th class="how-to-score">Count and Add<br />Only Aces</th>
-                            <td><input class='t' tabindex='1' /></td>
-                            <td><input class='t' tabindex='2' /></td>
-                            <td><input class='t' tabindex='3' /></td>
-                            <td><input class='t' tabindex='4' /></td>
-                            <td><input class='t' tabindex='5' /></td>
-                            <td><input class='t' tabindex='6' /></td>
+                            <td><input class='t' tabindex='1' value={this.toUiString(this.props.state.upper[0])}/></td>
                         </tr>
                         <tr>
                             <th>
@@ -44,12 +83,7 @@ class YahtzeeBoard extends Component {
                                 </div>
                             </th>
                             <th class="how-to-score">Count and Add<br />Only Twoes</th>
-                            <td><input class='t' tabindex='1' /></td>
-                            <td><input class='t' tabindex='2' /></td>
-                            <td><input class='t' tabindex='3' /></td>
-                            <td><input class='t' tabindex='4' /></td>
-                            <td><input class='t' tabindex='5' /></td>
-                            <td><input class='t' tabindex='6' /> </td>
+                            <td><input class='t' tabindex='1' value={this.toUiString(this.props.state.upper[1])} /></td>
                         </tr>
                         <tr>
                             <th>
@@ -59,12 +93,7 @@ class YahtzeeBoard extends Component {
                                 </div>
                             </th>
                             <th class="how-to-score">Count and Add<br />Only Threes</th>
-                            <td><input class='t' tabindex='1' /></td>
-                            <td><input class='t' tabindex='2' /></td>
-                            <td><input class='t' tabindex='3' /></td>
-                            <td><input class='t' tabindex='4' /></td>
-                            <td><input class='t' tabindex='5' /></td>
-                            <td><input class='t' tabindex='6' /> </td>
+                            <td><input class='t' tabindex='1' value={this.toUiString(this.props.state.upper[2])}/></td>
                         </tr>
                         <tr>
                             <th>
@@ -74,12 +103,7 @@ class YahtzeeBoard extends Component {
                                 </div>
                             </th>
                             <th class="how-to-score">Count and Add<br />Only Fours</th>
-                            <td><input class='t' tabindex='1' /></td>
-                            <td><input class='t' tabindex='2' /></td>
-                            <td><input class='t' tabindex='3' /></td>
-                            <td><input class='t' tabindex='4' /></td>
-                            <td><input class='t' tabindex='5' /></td>
-                            <td><input class='t' tabindex='6' /> </td>
+                            <td><input class='t' tabindex='1' value={this.toUiString(this.props.state.upper[3])}/></td>
                         </tr>
                         <tr>
                             <th>
@@ -89,12 +113,7 @@ class YahtzeeBoard extends Component {
                                 </div>
                             </th>
                             <th class="how-to-score">Count and Add<br />Only Fives</th>
-                            <td><input class='t' tabindex='1' /></td>
-                            <td><input class='t' tabindex='2' /></td>
-                            <td><input class='t' tabindex='3' /></td>
-                            <td><input class='t' tabindex='4' /></td>
-                            <td><input class='t' tabindex='5' /></td>
-                            <td><input class='t' tabindex='6' /> </td>
+                            <td><input class='t' tabindex='1' value={this.toUiString(this.props.state.upper[4])}/></td>
                         </tr>
                         <tr>
                             <th>
@@ -104,12 +123,7 @@ class YahtzeeBoard extends Component {
                                 </div>
                             </th>
                             <th class="how-to-score">Count and Add<br />Only Sixes</th>
-                            <td><input class='t' tabindex='1' /></td>
-                            <td><input class='t' tabindex='2' /></td>
-                            <td><input class='t' tabindex='3' /></td>
-                            <td><input class='t' tabindex='4' /></td>
-                            <td><input class='t' tabindex='5' /></td>
-                            <td><input class='t' tabindex='6' />  </td>
+                            <td><input class='t' tabindex='1'  value={this.toUiString(this.props.state.upper[5])}/></td>
                         </tr>
                         <tr class="foot">
                             <th>
@@ -118,12 +132,7 @@ class YahtzeeBoard extends Component {
                                 </div>
                             </th>
                             <th class="how-to-score"></th>
-                            <td><input class='t' tabindex='1' /></td>
-                            <td><input class='t' tabindex='2' /></td>
-                            <td><input class='t' tabindex='3' /></td>
-                            <td><input class='t' tabindex='4' /></td>
-                            <td><input class='t' tabindex='5' /></td>
-                            <td><input class='t' tabindex='6' /></td>
+                            <td><input class='t' tabindex='1' value={this.toUiString(this.totalScoreUpper())} /></td>
                         </tr>
                         <tr class="foot">
                             <th>
@@ -133,12 +142,7 @@ class YahtzeeBoard extends Component {
                                 </div>
                             </th>
                             <th class="how-to-score">Score 35</th>
-                            <td><input class='t' tabindex='1' /></td>
-                            <td><input class='t' tabindex='2' /></td>
-                            <td><input class='t' tabindex='3' /></td>
-                            <td><input class='t' tabindex='4' /></td>
-                            <td><input class='t' tabindex='5' /></td>
-                            <td><input class='t' tabindex='6' /></td>
+                            <td><input class='t' tabindex='1' value={this.upperBonus()}/></td>
                         </tr>
                         <tr class="foot">
                             <th>
@@ -148,12 +152,7 @@ class YahtzeeBoard extends Component {
                                 </div>
                             </th>
                             <th class="how-to-score"></th>
-                            <td><input class='t' tabindex='1' /></td>
-                            <td><input class='t' tabindex='2' /></td>
-                            <td><input class='t' tabindex='3' /></td>
-                            <td><input class='t' tabindex='4' /></td>
-                            <td><input class='t' tabindex='5' /></td>
-                            <td><input class='t' tabindex='6' /></td>
+                            <td><input class='t' tabindex='1' value={this.finalScoreUpper()} /></td>
                         </tr>
                     </tbody>
                     <tbody class="lower">
@@ -167,12 +166,7 @@ class YahtzeeBoard extends Component {
                                 </div>
                             </th>
                             <th class="how-to-score">Total of all dice </th>
-                            <td><input class='t' tabindex='1' /></td>
-                            <td><input class='t' tabindex='2' /></td>
-                            <td><input class='t' tabindex='3' /></td>
-                            <td><input class='t' tabindex='4' /></td>
-                            <td><input class='t' tabindex='5' /></td>
-                            <td><input class='t' tabindex='6' /> </td>
+                            <td><input class='t' tabindex='1' value={this.toUiString(this.props.state.lower[0])}/></td>
                         </tr>
                         <tr>
                             <th>
@@ -181,12 +175,7 @@ class YahtzeeBoard extends Component {
                                 </div>
                             </th>
                             <th class="how-to-score">Total of all dice</th>
-                            <td><input class='t' tabindex='1' /></td>
-                            <td><input class='t' tabindex='2' /></td>
-                            <td><input class='t' tabindex='3' /></td>
-                            <td><input class='t' tabindex='4' /></td>
-                            <td><input class='t' tabindex='5' /></td>
-                            <td><input class='t' tabindex='6' /> </td>
+                            <td><input class='t' tabindex='1'  value={this.toUiString(this.props.state.lower[1])}/></td>
                         </tr>
                         <tr>
                             <th>
@@ -195,12 +184,7 @@ class YahtzeeBoard extends Component {
                                 </div>
                             </th>
                             <th class="how-to-score">Score 25</th>
-                            <td><input class='t' tabindex='1' /></td>
-                            <td><input class='t' tabindex='2' /></td>
-                            <td><input class='t' tabindex='3' /></td>
-                            <td><input class='t' tabindex='4' /></td>
-                            <td><input class='t' tabindex='5' /></td>
-                            <td><input class='t' tabindex='6' /> </td>
+                            <td><input class='t' tabindex='1' value={this.toUiString(this.props.state.lower[2])} /></td>
                         </tr>
                         <tr>
                             <th>
@@ -210,12 +194,7 @@ class YahtzeeBoard extends Component {
                                 </div>
                             </th>
                             <th class="how-to-score">Score 30</th>
-                            <td><input class='t' tabindex='1' /></td>
-                            <td><input class='t' tabindex='2' /></td>
-                            <td><input class='t' tabindex='3' /></td>
-                            <td><input class='t' tabindex='4' /></td>
-                            <td><input class='t' tabindex='5' /></td>
-                            <td><input class='t' tabindex='6' /> </td>
+                            <td><input class='t' tabindex='1' value={this.toUiString(this.props.state.lower[3])} /></td>
                         </tr>
                         <tr>
                             <th>
@@ -225,12 +204,7 @@ class YahtzeeBoard extends Component {
                                 </div>
                             </th>
                             <th class="how-to-score">Score 40</th>
-                            <td><input class='t' tabindex='1' /></td>
-                            <td><input class='t' tabindex='2' /></td>
-                            <td><input class='t' tabindex='3' /></td>
-                            <td><input class='t' tabindex='4' /></td>
-                            <td><input class='t' tabindex='5' /></td>
-                            <td><input class='t' tabindex='6' /> </td>
+                            <td><input class='t' tabindex='1' value={this.toUiString(this.props.state.lower[4])} /></td>
                         </tr>
                         <tr>
                             <th>
@@ -240,12 +214,7 @@ class YahtzeeBoard extends Component {
                                 </div>
                             </th>
                             <th class="how-to-score">Score 50</th>
-                            <td><input class='t' tabindex='1' /></td>
-                            <td><input class='t' tabindex='2' /></td>
-                            <td><input class='t' tabindex='3' /></td>
-                            <td><input class='t' tabindex='4' /></td>
-                            <td><input class='t' tabindex='5' /></td>
-                            <td><input class='t' tabindex='6' />  </td>
+                            <td><input class='t' tabindex='1' value={this.toUiString(this.props.state.lower[5])} /></td>
                         </tr>
                         <tr>
                             <th>
@@ -254,12 +223,7 @@ class YahtzeeBoard extends Component {
                                 </div>
                             </th>
                             <th class="how-to-score">Total of all dice</th>
-                            <td><input class='t' tabindex='1' /></td>
-                            <td><input class='t' tabindex='2' /></td>
-                            <td><input class='t' tabindex='3' /></td>
-                            <td><input class='t' tabindex='4' /></td>
-                            <td><input class='t' tabindex='5' /></td>
-                            <td><input class='t' tabindex='6' />    </td>
+                            <td><input class='t' tabindex='1' value={this.toUiString(this.props.state.lower[6])} /></td>
                         </tr>
                         <tr>
                             <th rowspan="2">
@@ -269,20 +233,10 @@ class YahtzeeBoard extends Component {
                             </th>
                             <th class="how-to-score">&#x2714; for<br />each bonus</th>
                             <td><input class='t' tabindex='1' /></td>
-                            <td><input class='t' tabindex='2' /></td>
-                            <td><input class='t' tabindex='3' /></td>
-                            <td><input class='t' tabindex='4' /></td>
-                            <td><input class='t' tabindex='5' /></td>
-                            <td><input class='t' tabindex='6' />  </td>
                         </tr>
                         <tr>
                             <th class="how-to-score">Score 100<br />per &#x2714;</th>
                             <td><input class='t' tabindex='1' /></td>
-                            <td><input class='t' tabindex='2' /></td>
-                            <td><input class='t' tabindex='3' /></td>
-                            <td><input class='t' tabindex='4' /></td>
-                            <td><input class='t' tabindex='5' /></td>
-                            <td><input class='t' tabindex='6' />  </td>
                         </tr>
                         <tr class="foot">
                             <th>
@@ -292,12 +246,7 @@ class YahtzeeBoard extends Component {
                                 </div>
                             </th>
                             <th class="how-to-score"></th>
-                            <td><input class='t' tabindex='1' /></td>
-                            <td><input class='t' tabindex='2' /></td>
-                            <td><input class='t' tabindex='3' /></td>
-                            <td><input class='t' tabindex='4' /></td>
-                            <td><input class='t' tabindex='5' /></td>
-                            <td><input class='t' tabindex='6' /></td>
+                            <td><input class='t' tabindex='1' value={this.finalScoreLower()}/></td>
                         </tr>
                         <tr class="foot">
                             <th>
@@ -307,12 +256,7 @@ class YahtzeeBoard extends Component {
                                 </div>
                             </th>
                             <th class="how-to-score"></th>
-                            <td><input class='t' tabindex='1' /></td>
-                            <td><input class='t' tabindex='2' /></td>
-                            <td><input class='t' tabindex='3' /></td>
-                            <td><input class='t' tabindex='4' /></td>
-                            <td><input class='t' tabindex='5' /></td>
-                            <td><input class='t' tabindex='6' /></td>
+                            <td><input class='t' tabindex='1' value={this.finalScoreUpper()}/></td>
                         </tr>
                         <tr class="foot">
                             <th>
@@ -321,12 +265,7 @@ class YahtzeeBoard extends Component {
                                 </div>
                             </th>
                             <th class="how-to-score"></th>
-                            <td><input class='t' tabindex='1' /></td>
-                            <td><input class='t' tabindex='2' /></td>
-                            <td><input class='t' tabindex='3' /></td>
-                            <td><input class='t' tabindex='4' /></td>
-                            <td><input class='t' tabindex='5' /></td>
-                            <td><input class='t' tabindex='6' /></td>
+                            <td><input class='t' tabindex='1' value={this.finalScore()} /></td>
                         </tr>
                     </tbody>
                 </table>

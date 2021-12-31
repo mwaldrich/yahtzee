@@ -9,7 +9,7 @@ export default class YahtzeeState {
      * ...
      * upper[5] is the sixes score
      */
-    upper = [0, 0, 0, 0, 0, 0];
+    upper = [null, null, null, null, null, null];
 
     /**
      * Array of length 7. Represents the scores for
@@ -23,11 +23,15 @@ export default class YahtzeeState {
      * lower[5] is the yahtzee score
      * lower[6] is the chance score
      */
-    lower = [0, 0, 0, 0, 0, 0, 0];
+    lower = [null, null, null, null, null, null];
 
     constructor(upper, lower) {
-        this.upper = upper;
-        this.lower = lower;
+        if (upper) {
+            this.upper = upper;
+        }
+        if (lower) {
+            this.lower = lower;
+        }
     }
 
 }
