@@ -6,6 +6,7 @@ class Goal extends Component {
       // You can use them as regular CSS styles
       return <>
             <div className="roll">
+                <div className="dieTitle"><br/></div>
                 <div className="die">&#x2684;</div>
                 <div className="die">&#x2684;</div>
                 <div className="die">&#x2684;</div>
