@@ -45,6 +45,9 @@ export function reroll(roll, keep) {
 export function allKeepMasks() {
     let keepMasks = [];
 
+    // 2^5 because:
+    // 2 possibilities for each die: keep or reroll?
+    // 5 different dice
     for (let i = 0; i < 32 /* 2^5 */; i++) {
         keepMasks.push([
             (i & 0b00001) === 1,
