@@ -27,24 +27,30 @@ function App() {
     let [keepmask, setKeepmask] = useState([true, true, true, true, true]);
     // ....... for the other ones
 
-    function nextTurn() {
+    function sleep(ms) {
+        return new Promise((res, rej) => {
+            setTimeout(() => {res()}, ms)
+        }) 
+    }
+
+    async function nextTurn() {
         // Let the button know the AI is working...
         setMyTurn(true);
 
+        await sleep(1000);
+
         // Calculate move in the background
-            new Promise((res, rej) => {
-                let [scoreCard, currentRoll, currentPlay, goalRoll, goalPlay, actualPlay, rollsLeft, keepmask] = backend.nextTurn();
-                // Update UI with currentRoll, currentPlay, etc.
-                setScoreCard(scoreCard);
-                setCurrentRoll(currentRoll);
-                setCurrentPlay(currentPlay);
-                setGoalRoll(goalRoll);
-                setGoalPlay(goalPlay);
-                setActualPlay(actualPlay);
-                setRollsLeft(rollsLeft);
-                setMyTurn(false);
-                setKeepmask(keepmask);
-            })
+        let [scoreCard, currentRoll, currentPlay, goalRoll, goalPlay, actualPlay, rollsLeft, keepmask] = await backend.nextTurn();
+        // Update UI with currentRoll, currentPlay, etc.
+        setScoreCard(scoreCard);
+        setCurrentRoll(currentRoll);
+        setCurrentPlay(currentPlay);
+        setGoalRoll(goalRoll);
+        setGoalPlay(goalPlay);
+        setActualPlay(actualPlay);
+        setRollsLeft(rollsLeft);
+        setMyTurn(false);
+        setKeepmask(keepmask);
     }
 
     return (
@@ -53,7 +59,7 @@ function App() {
             <Roll currentRoll={currentRoll} currentPlay={currentPlay} rollsLeft={rollsLeft} keepmask={keepmask} />
             <Goal goalRoll={goalRoll} goalPlay={goalPlay} rollsLeft={rollsLeft}/>
             <div className="Calc">
-                <ProgressBar myTurn={myTurn} nextTurn={nextTurn} rollsLeft={rollsLeft}/>
+                <ProgressBar myTurn={myTurn} nextTurn={nextTurn} rollsLeft={rollsLeft} myTurn={myTurn} />
 
             </div>
             <GameBackground />

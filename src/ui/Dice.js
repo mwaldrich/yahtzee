@@ -5,7 +5,7 @@ class Dice extends Component {
   render() {
       // You can use them as regular CSS styles
       return <>
-      <div className='spun'>
+      <div className={this.props.myTurn ? 'spun' : 'notspin'}>
        <p>&#x2681;</p>
       </div>
       </>;

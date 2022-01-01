@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import './NextTurnButton.css'; 
+import './CalculatingButton.css'; 
 import Calculating from './CalculatingButton';
 
 class NextTurn extends Component {
@@ -25,11 +26,11 @@ class NextTurn extends Component {
       // You can use them as regular CSS styles
       if(!this.props.myTurn){
         return <>
-          <button className="nextturn" onClick={() => this.props.nextTurn()}><b>{this.buttonLogic()}</b></button>
+          <button className="nextturn" onClick={() => this.props.nextTurn()}><b>{this.buttonLogic()} </b></button>
         </>;
       } else {
         return <>
-          <Calculating />
+          <button className="calculating" ><b>Rolling...</b></button>
         </>
       }
   }

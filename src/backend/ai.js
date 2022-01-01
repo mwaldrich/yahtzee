@@ -83,7 +83,7 @@ export class Backend {
         this.scorecard = [null, null, null, null, null, null, null, null, null, null, null, null, null];
     }
 
-    nextTurn() {
+    async nextTurn() {
         // have to return: 
         // - scoreCard
         // - currentRoll
@@ -119,7 +119,7 @@ export class Backend {
             }
 
             // Find the next play
-            let [k, gRoll, gPlay] = this.minmax();
+            let [k, gRoll, gPlay] = await this.minmax();
             keepmask = k;
             goalRoll = gRoll;
             goalPlay = gPlay;
@@ -150,7 +150,7 @@ export class Backend {
      * 
      * @returns keep mask, goal roll, and goal play
      */
-    minmax() {
+    async minmax() {
         // keepmask -> [[score, roll]]
         let plays = {};
 
