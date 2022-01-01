@@ -20,7 +20,6 @@ class YahtzeeBoard extends Component {
         for(let i=0; i < array.length; i++) {
             total+=array[i]
         }
-        console.log(total)
         return total
     }
 
@@ -53,7 +52,7 @@ class YahtzeeBoard extends Component {
 
 
     render() {
-      console.log(`NextTurnButton: this.props = ${JSON.stringify(this.props)}`);
+      console.log(`YahtzeeBoard: this.props = ${JSON.stringify(this.props)}`);
         // The yahtzee state is avaiable with
         //     this.props.state
         return <div class="yahtzee">
@@ -66,7 +65,7 @@ class YahtzeeBoard extends Component {
                             <th>How to Score</th>
                             <th>Game #1</th>
                         </tr>
-                        <tr>
+                        <tr class={`${this.props.actualPlay === 0 ? "highlighted" : ""}`}>
                             <th>
                                 <div class="desc">
                                     <div class="primary">Aces </div>
@@ -76,7 +75,7 @@ class YahtzeeBoard extends Component {
                             <th class="how-to-score">Count and Add<br />Only Aces</th>
                             <td><input class='t' tabindex='1' value={this.toUiString(this.props.state.upper[0])}/></td>
                         </tr>
-                        <tr>
+                        <tr class={`${this.props.actualPlay === 1 ? "highlighted" : ""}`}>
                             <th>
                                 <div class="desc">
                                     <div class="primary">Twos </div>
@@ -86,7 +85,7 @@ class YahtzeeBoard extends Component {
                             <th class="how-to-score">Count and Add<br />Only Twoes</th>
                             <td><input class='t' tabindex='1' value={this.toUiString(this.props.state.upper[1])} /></td>
                         </tr>
-                        <tr>
+                        <tr class={`${this.props.actualPlay === 2 ? "highlighted" : ""}`}>
                             <th>
                                 <div class="desc">
                                     <div class="primary">Threes </div>
@@ -96,7 +95,7 @@ class YahtzeeBoard extends Component {
                             <th class="how-to-score">Count and Add<br />Only Threes</th>
                             <td><input class='t' tabindex='1' value={this.toUiString(this.props.state.upper[2])}/></td>
                         </tr>
-                        <tr>
+                        <tr class={`${this.props.actualPlay === 3 ? "highlighted" : ""}`}>
                             <th>
                                 <div class="desc">
                                     <div class="primary">Fours </div>
@@ -106,7 +105,7 @@ class YahtzeeBoard extends Component {
                             <th class="how-to-score">Count and Add<br />Only Fours</th>
                             <td><input class='t' tabindex='1' value={this.toUiString(this.props.state.upper[3])}/></td>
                         </tr>
-                        <tr>
+                        <tr class={`${this.props.actualPlay === 4 ? "highlighted" : ""}`}>
                             <th>
                                 <div class="desc">
                                     <div class="primary">Fives </div>
@@ -116,7 +115,7 @@ class YahtzeeBoard extends Component {
                             <th class="how-to-score">Count and Add<br />Only Fives</th>
                             <td><input class='t' tabindex='1' value={this.toUiString(this.props.state.upper[4])}/></td>
                         </tr>
-                        <tr>
+                        <tr class={`${this.props.actualPlay === 5 ? "highlighted" : ""}`}>
                             <th>
                                 <div class="desc">
                                     <div class="primary">Sixes </div>
@@ -160,7 +159,7 @@ class YahtzeeBoard extends Component {
                         <tr class="head">
                             <th colspan="8">Lower Section</th>
                         </tr>
-                        <tr>
+                        <tr class={`${this.props.actualPlay === 6 ? "highlighted" : ""}`}>
                             <th>
                                 <div class="desc">
                                     <div class="primary">3 of a kind</div>
@@ -169,7 +168,7 @@ class YahtzeeBoard extends Component {
                             <th class="how-to-score">Total of all dice </th>
                             <td><input class='t' tabindex='1' value={this.toUiString(this.props.state.lower[0])}/></td>
                         </tr>
-                        <tr>
+                        <tr class={`${this.props.actualPlay === 7 ? "highlighted" : ""}`}>
                             <th>
                                 <div class="desc">
                                     <div class="primary">4 of a kind </div>
@@ -178,7 +177,7 @@ class YahtzeeBoard extends Component {
                             <th class="how-to-score">Total of all dice</th>
                             <td><input class='t' tabindex='1'  value={this.toUiString(this.props.state.lower[1])}/></td>
                         </tr>
-                        <tr>
+                        <tr class={`${this.props.actualPlay === 8 ? "highlighted" : ""}`}>
                             <th>
                                 <div class="desc">
                                     <div class="primary">Full House </div>
@@ -187,7 +186,7 @@ class YahtzeeBoard extends Component {
                             <th class="how-to-score">Score 25</th>
                             <td><input class='t' tabindex='1' value={this.toUiString(this.props.state.lower[2])} /></td>
                         </tr>
-                        <tr>
+                        <tr class={`${this.props.actualPlay === 9 ? "highlighted" : ""}`}>
                             <th>
                                 <div class="desc">
                                     <div class="primary">Sm. Straight </div>
@@ -197,7 +196,7 @@ class YahtzeeBoard extends Component {
                             <th class="how-to-score">Score 30</th>
                             <td><input class='t' tabindex='1' value={this.toUiString(this.props.state.lower[3])} /></td>
                         </tr>
-                        <tr>
+                        <tr class={`${this.props.actualPlay === 10 ? "highlighted" : ""}`}>
                             <th>
                                 <div class="desc">
                                     <div class="primary">Lg. Straight </div>
@@ -207,7 +206,7 @@ class YahtzeeBoard extends Component {
                             <th class="how-to-score">Score 40</th>
                             <td><input class='t' tabindex='1' value={this.toUiString(this.props.state.lower[4])} /></td>
                         </tr>
-                        <tr>
+                        <tr class={`${this.props.actualPlay === 11 ? "highlighted" : ""}`}>
                             <th>
                                 <div class="desc">
                                     <div class="primary">YAHTZEE </div>
@@ -215,16 +214,18 @@ class YahtzeeBoard extends Component {
                                 </div>
                             </th>
                             <th class="how-to-score">Score 50</th>
-                            <td><input class='t' tabindex='1' value={this.toUiString(this.props.state.lower[5])} /></td>
+                            <td>
+                                <input class={`t `} tabindex='1' value={this.toUiString(this.props.state.lower[5])}
+                            /></td>
                         </tr>
-                        <tr>
+                        <tr class={`${this.props.actualPlay === 12 ? "highlighted" : ""}`}>
                             <th>
                                 <div class="desc">
                                     <div class="primary">Chance </div>
                                 </div>
                             </th>
                             <th class="how-to-score">Total of all dice</th>
-                            <td><input class='t' tabindex='1' value={this.toUiString(this.props.state.lower[6])} /></td>
+                            <td><input class='t' tabindex='1' value={this.toUiString(this.props.state.lower[6])}/></td>
                         </tr>
                         <tr>
                             <th rowspan="2">
