@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/yahtzee/static/css/main.9a3a3d46.css",
-    "main.js": "/yahtzee/static/js/main.3ce4d575.js",
+    "main.js": "/yahtzee/static/js/main.fbd4298e.js",
     "static/js/787.0972068a.chunk.js": "/yahtzee/static/js/787.0972068a.chunk.js",
     "static/media/logo.svg": "/yahtzee/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/yahtzee/index.html",
     "main.9a3a3d46.css.map": "/yahtzee/static/css/main.9a3a3d46.css.map",
-    "main.3ce4d575.js.map": "/yahtzee/static/js/main.3ce4d575.js.map",
+    "main.fbd4298e.js.map": "/yahtzee/static/js/main.fbd4298e.js.map",
     "787.0972068a.chunk.js.map": "/yahtzee/static/js/787.0972068a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9a3a3d46.css",
-    "static/js/main.3ce4d575.js"
+    "static/js/main.fbd4298e.js"
   ]
 }
