@@ -32,7 +32,7 @@ function App() {
         // Calculate move in the background
         setTimeout(() => {
             new Promise((res, rej) => {
-                let [scoreCard, currentRoll, currentPlay, goalRoll, goalPlay, actualPlay] = [
+                let [scoreCard, currentRoll, currentPlay, goalRoll, goalPlay, actualPlay, rollsLeft] = [
                     new YahtzeeState([1, 2, 3, 4, 5, 6], [7, 8, 9, 10, 11, 12, 13]),
                     [1, 1, 3, 5, 2], 
                     0, 
@@ -46,6 +46,7 @@ function App() {
                 setGoalRoll(goalRoll);
                 setGoalPlay(goalPlay);
                 setActualPlay(actualPlay);
+                setRollsLeft(rollsLeft);
                 if(rollsLeft===0){
                     rollsLeft=3
                 } else {
