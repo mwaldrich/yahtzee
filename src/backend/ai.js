@@ -58,3 +58,20 @@ export function allKeepMasks() {
     return keepMasks;
 }
 
+class Backend {
+    constructor() {
+        this.turnNumber = 1;
+        this.rollsRemaining = 3;
+
+        // The initial roll
+        this.roll = reroll([1, 1, 1, 1, 1], [false, false, false, false, false]);
+
+        // Empty scoreboard
+        this.scoreboard = [null, null, null, null, null, null, null, null, null, null, null, null, null];
+    }
+
+    nextTurn() {
+        
+    }
+
+}
