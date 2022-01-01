@@ -18,6 +18,20 @@ test('no aces', () => {
     expect(scorePlay([6, 5, 4, 3, 2], 0)).toBe(0);
 });
 
+// Sixes
+test('5 sixes', () => {
+    expect(scorePlay([6, 6, 6, 6, 6], 5)).toBe(30);
+});
+test('4 sixes', () => {
+    expect(scorePlay([6, 5, 6, 6, 6], 5)).toBe(24);
+});
+test('mixed sixes', () => {
+    expect(scorePlay([1, 4, 6, 3, 2], 5)).toBe(6);
+});
+test('no sixes', () => {
+    expect(scorePlay([5, 4, 4, 2, 1], 5)).toBe(0);
+});
+
 // Play #6: 3 of a kind
 test('Play #6: 3 of a kind: 6s', () => {
     expect(scorePlay([1, 1, 6, 6, 6], 6)).toBe(20);
