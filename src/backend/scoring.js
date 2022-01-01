@@ -18,7 +18,6 @@ export function score(roll, scorecard) {
         || typeof scorecard !== 'object'
         || scorecard.length != 13) {
             console.error(`"score" called with invalid inputs: roll=${roll}, scorecard=${scorecard}`);
-            a;
     }
 
     // Step 1: turn the scorecard values into an array that looks like:

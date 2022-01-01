@@ -1,6 +1,7 @@
 import logo from './logo.svg'
 import './App.css'
 import YahtzeeState from './backend/YahtzeeState'
+import { Backend } from './backend/ai'
 import GameBackground from './ui/GameBackground'
 import YahtzeeBoard from './ui/YahtzeeBoard';
 import Roll from './ui/Roll'
@@ -11,18 +12,18 @@ import { useState } from 'react';
 /*
 
             */
-const backend = {};
+const backend = new Backend();
 
 function App() {
     // Define state
     let [myTurn, setMyTurn] = useState(false);
-    let [currentRoll, setCurrentRoll] = useState([5, 3, 3, 4, 5]);
-    let [currentPlay, setCurrentPlay] = useState(5);
-    let [goalRoll, setGoalRoll] = useState([1, 2, 3, 4, 5]);
-    let [goalPlay, setGoalPlay] = useState(10);
-    let [rollsLeft, setRollsLeft] = useState(3);
-    let [scoreCard, setScoreCard] = useState(new YahtzeeState([1, 2, 3, 4, 5, 6], [7, 8, 9, 10, 11, 12, 13]))
-    let [actualPlay, setActualPlay] = useState(null);
+    let [currentRoll, setCurrentRoll] = useState(backend.roll);
+    let [currentPlay, setCurrentPlay] = useState(0);
+    let [goalRoll, setGoalRoll] = useState([null, null, null, null, null]);
+    let [goalPlay, setGoalPlay] = useState(backend.goalPlay);
+    let [rollsLeft, setRollsLeft] = useState(backend.rollsRemaining);
+    let [scoreCard, setScoreCard] = useState(new YahtzeeState())
+    let [actualPlay, setActualPlay] = useState(backend.actualPlay);
     // ....... for the other ones
 
     function nextTurn() {
@@ -30,15 +31,8 @@ function App() {
         setMyTurn(true);
 
         // Calculate move in the background
-        setTimeout(() => {
             new Promise((res, rej) => {
-                let [scoreCard, currentRoll, currentPlay, goalRoll, goalPlay, actualPlay, rollsLeft] = [
-                    new YahtzeeState([1, 2, 3, 4, 5, 6], [7, 8, 9, 10, 11, 12, 13]),
-                    [1, 1, 3, 5, 2], 
-                    0, 
-                    [1, 1, 1, 1, 1], 
-                    12, 
-                    6] // backend.nextTurn();
+                let [scoreCard, currentRoll, currentPlay, goalRoll, goalPlay, actualPlay, rollsLeft] = backend.nextTurn();
                 // Update UI with currentRoll, currentPlay, etc.
                 setScoreCard(scoreCard);
                 setCurrentRoll(currentRoll);
@@ -47,22 +41,15 @@ function App() {
                 setGoalPlay(goalPlay);
                 setActualPlay(actualPlay);
                 setRollsLeft(rollsLeft);
-                if(rollsLeft===0){
-                    rollsLeft=3
-                } else {
-                    rollsLeft-=1
-                }
-                setRollsLeft(rollsLeft);
                 setMyTurn(false);
             })
-        }, 5000 /*5 seconds*/);
     }
 
     return (
         <div className="App">
             <YahtzeeBoard state={scoreCard} actualPlay={actualPlay}/>
-            <Roll currentRoll={currentRoll} rollsLeft={rollsLeft}/>
-            <Goal goalRoll={goalRoll} />
+            <Roll currentRoll={currentRoll.sort()} currentPlay={currentPlay} rollsLeft={rollsLeft}/>
+            <Goal goalRoll={goalRoll.sort()} goalPlay={goalPlay} />
             <div className="Calc">
                 <ProgressBar myTurn={myTurn} nextTurn={nextTurn} />
 
