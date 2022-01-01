@@ -171,10 +171,29 @@ test('score: 3 of a kind (all sixes). Yahtzee, 4 of a kind, and sixes taken.', (
         null,
         50,
         null,
-    ]
+    ];
     expect(score([6, 6, 6, 6, 6], scoreboard)).toEqual([6, 30]);
 });
 test('score: good full house, bad everything else', () => {
     // Should count as full house. Not the 1s, the 2s, or a 3 of a kind.
     expect(score([1, 1, 1, 2, 2], emptyScoreboard)).toEqual([8, 25]);
+});
+test('score: will take chance if it has to', () => {
+    // all the good ways to play a 6 yahtzee are taken
+    let scoreboard = [
+        null,
+        null,
+        null,
+        null,
+        null,
+        20,
+        20,
+        15,
+        null,
+        null,
+        null,
+        50,
+        null,
+    ]
+    expect(score([6, 6, 6, 6, 6], scoreboard)).toEqual([12, 30]);
 });
