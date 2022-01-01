@@ -2,31 +2,35 @@
 
 import { score, scorePlay } from "./scoring";
 
+////////////////////////////////////
+// Tests for scorePlay
+////////////////////////////////////
+
 // Aces
-test('5 aces', () => {
+test('Play #0: 5 aces', () => {
     expect(scorePlay([1, 1, 1, 1, 1], 0)).toBe(5);
 });
-test('4 aces', () => {
+test('Play #0: 4 aces', () => {
     expect(scorePlay([1, 3, 1, 1, 1], 0)).toBe(4);
 });
-test('mixed aces', () => {
+test('Play #0: mixed aces', () => {
     expect(scorePlay([6, 1, 5, 4, 1], 0)).toBe(2);
 });
-test('no aces', () => {
+test('Play #0: no aces', () => {
     expect(scorePlay([6, 5, 4, 3, 2], 0)).toBe(0);
 });
 
 // Sixes
-test('5 sixes', () => {
+test('Play #5: 5 sixes', () => {
     expect(scorePlay([6, 6, 6, 6, 6], 5)).toBe(30);
 });
-test('4 sixes', () => {
+test('Play #5: 4 sixes', () => {
     expect(scorePlay([6, 5, 6, 6, 6], 5)).toBe(24);
 });
-test('mixed sixes', () => {
+test('Play #5: mixed sixes', () => {
     expect(scorePlay([1, 4, 6, 3, 2], 5)).toBe(6);
 });
-test('no sixes', () => {
+test('Play #5: no sixes', () => {
     expect(scorePlay([5, 4, 4, 2, 1], 5)).toBe(0);
 });
 
@@ -126,4 +130,51 @@ test('Play #12: Chance: #3', () => {
 });
 test('Play #12: Chance: #4', () => {
     expect(scorePlay([5, 4, 3, 2, 1], 12)).toBe(15);
+});
+
+////////////////////////////////////
+// Tests for score
+////////////////////////////////////
+
+const emptyScoreboard = [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+];
+
+// Can we determine the best scoring method for a roll?
+test('score: Empty scoreboard yahtzee of aces', () => {
+    expect(score([1, 1, 1, 1, 1], emptyScoreboard)).toEqual([11, 50]);
+});
+test('score: 3 of a kind (all sixes). Yahtzee, 4 of a kind, and sixes taken.', () => {
+    let scoreboard = [
+        null,
+        null,
+        null,
+        null,
+        null,
+        20,
+        null,
+        15,
+        null,
+        null,
+        null,
+        50,
+        null,
+    ]
+    expect(score([6, 6, 6, 6, 6], scoreboard)).toEqual([6, 30]);
+});
+test('score: good full house, bad everything else', () => {
+    // Should count as full house. Not the 1s, the 2s, or a 3 of a kind.
+    expect(score([1, 1, 1, 2, 2], emptyScoreboard)).toEqual([8, 25]);
 });

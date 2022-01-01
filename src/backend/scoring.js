@@ -9,7 +9,7 @@
  * Finds the highest scoring play for this roll.
  * @param {Number[5]} roll 
  * @param {Number[13]} scorecard 
- * @returns 
+ * @returns {[Number, Number]} [play, value]
  */
 export function score(roll, scorecard) {
     // Sanity checks. Do the inputs look right?
@@ -26,12 +26,13 @@ export function score(roll, scorecard) {
 
     // Step 2: Filter out the plays we've already scored, then score our new roll on those plays
     // Type: [play, value]
-    let scoredPlays = scorecard
-        .filter(([play, previouslyScoredValue]) => previouslyScoredValue != null)
-        .map(([play, _]) => [play, scorePlay(play, roll)]);
+    let scoredPlays = scorecardWithIndices
+        .filter(([play, previouslyScoredValue]) => previouslyScoredValue == null)
+        .map(([play, _]) => [play, scorePlay(roll, play)]);
 
-    // Return the highest scoring play
-    let bestPlay = scoredPlays.concat().sort(([play1, score1], [play2, score2]) => score2 - score1)[0];
+    // Step 3: Return the highest scoring play
+    let plays = scoredPlays.concat().sort(([play1, score1], [play2, score2]) => score2 - score1);
+    let bestPlay = plays[0];
     return bestPlay;
 }
 
