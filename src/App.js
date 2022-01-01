@@ -33,6 +33,17 @@ function App() {
         }) 
     }
 
+    function sortCurrentRoll(currentRoll, keepmask) {
+        let zipped = [];
+        for (let i = 0; i < 5; i++) {
+            zipped[i] = [currentRoll[i], keepmask[i]];
+        }
+
+        zipped.sort((a, b) => a[0] - b[0]);
+
+        return [zipped.map(v => v[0]), zipped.map(v => v[1])];
+    }
+
     async function nextTurn() {
         // Let the button know the AI is working...
         setMyTurn(true);
@@ -42,10 +53,11 @@ function App() {
         // Calculate move in the background
         let [scoreCard, currentRoll, currentPlay, goalRoll, goalPlay, actualPlay, rollsLeft, keepmask] = await backend.nextTurn();
         // Update UI with currentRoll, currentPlay, etc.
+        [currentRoll, keepmask] = sortCurrentRoll(currentRoll, keepmask);
         setScoreCard(scoreCard);
         setCurrentRoll(currentRoll);
         setCurrentPlay(currentPlay);
-        setGoalRoll(goalRoll);
+        setGoalRoll(goalRoll.sort());
         setGoalPlay(goalPlay);
         setActualPlay(actualPlay);
         setRollsLeft(rollsLeft);
