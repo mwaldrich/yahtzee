@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import Calculating from './CalculatingButton.js';
 import Dice from './Dice.js';
 import NextTurn from './NextTurnButton.js';
-import './Progress.css'; 
+import './ProgressBar.css'; 
 
-class Progress extends Component {
+class ProgressBar extends Component {
   render() {
       return <>
       <div className="prog">
@@ -14,11 +13,10 @@ class Progress extends Component {
             <Dice />
             <Dice />
         </div>
-        <Calculating />
-        <NextTurn />
+        <NextTurn {...this.props} />
       </div>
       </>;
   }
 }
 
-export default Progress;
+export default ProgressBar;

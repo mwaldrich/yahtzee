@@ -3,16 +3,18 @@ import './Roll.css'; // Tell webpack that Button.js uses these styles
 
 class Roll extends Component {
   render() {
+    console.log(`Rolls Left in Roll: this.props = ${this.props.rollsLeft}`)
+    this.die = ["\u2680","\u2681","\u2682","\u2683","\u2684","\u2685"]
       // You can use them as regular CSS styles
       //make the following dice a react element
       return <>
             <div className="roll">
-                <div className="dieTitle">RL: 3</div>
-                <div className="die">&#x2684;</div>
-                <div className="die">&#x2684;</div>
-                <div className="die">&#x2684;</div>
-                <div className="die">&#x2684;</div>
-                <div className="die">&#x2684;</div>
+                <div className="dieTitle">RL: {this.props.rollsLeft}</div>
+                <div className="die">{this.die[this.props.currentRoll[0]-1]}</div>
+                <div className="die">{this.die[this.props.currentRoll[1]-1]}</div>
+                <div className="die">{this.die[this.props.currentRoll[2]-1]}</div>
+                <div className="die">{this.die[this.props.currentRoll[3]-1]}</div>
+                <div className="die">{this.die[this.props.currentRoll[4]-1]}</div>
                 <div className="dieTitle">Play</div>
                 <div className="dieTitle">Roll</div>
             </div>

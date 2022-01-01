@@ -1,16 +1,26 @@
 
 import React, { Component } from 'react';
 import './NextTurnButton.css'; 
+import Calculating from './CalculatingButton';
 
 class NextTurn extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
   render() {
+      console.log(`NextTurnButton: this.props = ${JSON.stringify(this.props)}`);
       // You can use them as regular CSS styles
-      return <>
-      <div className="nextturn">
-       <p><b>Next Turn</b></p>
-      </div>
-      </>;
+      if(!this.props.myTurn){
+        return <>
+          <button className="nextturn" onClick={() => this.props.nextTurn()}><b>Go</b></button>
+        </>;
+      } else {
+        return <>
+          <Calculating />
+        </>
+      }
   }
 }
-
 export default NextTurn;
