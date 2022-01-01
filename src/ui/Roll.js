@@ -15,24 +15,24 @@ class Roll extends Component {
     }
       return <>
             <div className="roll">
-                <div className="dieTitle">RL: {this.rl}</div>
-                <div class={`die ${this.props.keepmask[0] == false ? "highlighted" : ""}`}>
+                <div className="dieTitle"><b>Roll</b></div>
+                <div className="diePlay"><i>{playToString(this.props.currentPlay)}</i></div>
+                <div className="rollsRemaining">Left: {this.rl}</div>
+                <div class={`die ${this.props.keepmask[0] == false ? "reroll" : ""}`}>
                   {this.die[this.props.currentRoll[0]-1]}
                 </div>
-                <div class={`die ${this.props.keepmask[1] == false ? "highlighted" : ""}`}>
+                <div class={`die ${this.props.keepmask[1] == false ? "reroll" : ""}`}>
                   {this.die[this.props.currentRoll[1]-1]}
                 </div>
-                <div class={`die ${this.props.keepmask[2] == false ? "highlighted" : ""}`}>
+                <div class={`die ${this.props.keepmask[2] == false ? "reroll" : ""}`}>
                   {this.die[this.props.currentRoll[2]-1]}
                 </div>
-                <div class={`die ${this.props.keepmask[3] == false ? "highlighted" : ""}`}>
+                <div class={`die ${this.props.keepmask[3] == false ? "reroll" : ""}`}>
                   {this.die[this.props.currentRoll[3]-1]}
                 </div>
-                <div class={`die ${this.props.keepmask[4] == false ? "highlighted" : ""}`}>
+                <div class={`die ${this.props.keepmask[4] == false ? "reroll" : ""}`}>
                   {this.die[this.props.currentRoll[4]-1]}
                 </div>
-                <div className="dieTitle">{playToString(this.props.currentPlay)}</div>
-                <div className="dieTitle">Roll</div>
             </div>
       </>;
   }
