@@ -34,4 +34,16 @@ export default class YahtzeeState {
         }
     }
 
+    /**
+     * Convert a backend scorecard into a YahtzeeState.
+     * @param {Number[13]} card 
+     * @returns {YahtzeeState}
+     */
+    static fromBackend(card) {
+        let yahtzeeState = new YahtzeeState();
+        yahtzeeState.upper = card.slice(0, 6);
+        yahtzeeState.lower = card.slice(6);
+        return yahtzeeState;
+    }
+
 }
