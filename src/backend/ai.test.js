@@ -25,7 +25,7 @@ function printNextTurnState(state) {
     goal play\t=> ${JSON.stringify(state[4])}
     actual play\t=> ${JSON.stringify(state[5])}
     rolls remaining\t=> ${JSON.stringify(state[6])}
-    total score\t=>${state[0].reduce((a, b) => a + b, 0)}
+    total score\t=>${state[0].lower.reduce((a, b) => a + b, 0) + state[0].upper.reduce((a, b) => a + b, 0)}
     `)
 }
 
@@ -51,7 +51,9 @@ test('simulate entire game', () => {
     let state;
 
     for (let turn = 0; ; turn++) {
-        if (state && state[0].every(v => v !== null)) {
+        if (state 
+            && state[0].upper.every(v => v != null)
+            && state[0].lower.every(v => v != null)) {
             break;
         }
         console.log(`Turn #${turn}!`)

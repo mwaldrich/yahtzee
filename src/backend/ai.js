@@ -1,4 +1,5 @@
 import { score, scorePlay } from "./scoring";
+import YahtzeeState from "./YahtzeeState";
 
 /**
  * Types:
@@ -127,7 +128,7 @@ export class Backend {
         }
 
         return [
-            this.scorecard,
+            YahtzeeState.fromBackend(this.scorecard),
             this.roll,
             currentPlay,
             goalRoll,
