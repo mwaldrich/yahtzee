@@ -39,6 +39,7 @@
 body {
   line-height: inherit;
 }
+
 .section,
 
 .yahtzee {
@@ -61,8 +62,7 @@ body {
 .desc {
   font-weight: 700;
 }
-.pad-regular,
-.yahtzee__score-card td,
+.pad-regular, .yahtzee__score-card td,
 .yahtzee__score-card th {
   padding: 0rem 0.67rem;
 }
@@ -153,3 +153,8 @@ input.t {
   font: normal normal 12pt Indie Flower;
 }
 
+
+.highlighted {
+  color: green;
+  background-color: yellow;
+}

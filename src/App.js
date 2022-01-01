@@ -22,7 +22,7 @@ function App() {
     let [goalPlay, setGoalPlay] = useState(10);
     let [rollsLeft, setRollsLeft] = useState(3);
     let [scoreCard, setScoreCard] = useState(new YahtzeeState([1, 2, 3, 4, 5, 6], [7, 8, 9, 10, 11, 12, 13]))
-    let [actualPlay, setActualPlay] = useState(11);
+    let [actualPlay, setActualPlay] = useState(null);
     // ....... for the other ones
 
     function nextTurn() {
@@ -37,7 +37,8 @@ function App() {
                     [1, 1, 3, 5, 2], 
                     0, 
                     [1, 1, 1, 1, 1], 
-                    11] // backend.nextTurn();
+                    12, 
+                    6] // backend.nextTurn();
                 // Update UI with currentRoll, currentPlay, etc.
                 setScoreCard(scoreCard);
                 setCurrentRoll(currentRoll);
@@ -58,7 +59,7 @@ function App() {
 
     return (
         <div className="App">
-            <YahtzeeBoard state={scoreCard} />
+            <YahtzeeBoard state={scoreCard} actualPlay={actualPlay}/>
             <Roll currentRoll={currentRoll} rollsLeft={rollsLeft}/>
             <Goal goalRoll={goalRoll} />
             <div className="Calc">
