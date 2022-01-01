@@ -77,7 +77,7 @@ export class Backend {
         this.rollsRemaining = 3;
 
         // The initial roll
-        this.roll = [1, 1, 1, 1, 1];
+        this.roll = [null, null, null, null, null];
 
         // Empty scorecard
         this.scorecard = [null, null, null, null, null, null, null, null, null, null, null, null, null];
