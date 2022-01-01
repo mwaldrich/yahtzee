@@ -21,6 +21,8 @@ function App() {
     let [goalRoll, setGoalRoll] = useState([1, 2, 3, 4, 5]);
     let [goalPlay, setGoalPlay] = useState(10);
     let [rollsLeft, setRollsLeft] = useState(3);
+    let [scoreCard, setScoreCard] = useState(new YahtzeeState([1, 2, 3, 4, 5, 6], [7, 8, 9, 10, 11, 12, 13]))
+    let [actualPlay, setActualPlay] = useState(11);
     // ....... for the other ones
 
     function nextTurn() {
@@ -30,12 +32,19 @@ function App() {
         // Calculate move in the background
         setTimeout(() => {
             new Promise((res, rej) => {
-                let [currentRoll, currentPlay, goalRoll, goalPlay] = [[1, 1, 3, 5, 2], 0, [1, 1, 1, 1, 1], 11] // backend.nextTurn();
+                let [scoreCard, currentRoll, currentPlay, goalRoll, goalPlay, actualPlay] = [
+                    new YahtzeeState([1, 2, 3, 4, 5, 6], [7, 8, 9, 10, 11, 12, 13]),
+                    [1, 1, 3, 5, 2], 
+                    0, 
+                    [1, 1, 1, 1, 1], 
+                    11] // backend.nextTurn();
                 // Update UI with currentRoll, currentPlay, etc.
+                setScoreCard(scoreCard);
                 setCurrentRoll(currentRoll);
                 setCurrentPlay(currentPlay);
                 setGoalRoll(goalRoll);
                 setGoalPlay(goalPlay);
+                setActualPlay(actualPlay);
                 if(rollsLeft===0){
                     rollsLeft=3
                 } else {
@@ -49,16 +58,11 @@ function App() {
 
     return (
         <div className="App">
-            <YahtzeeBoard state={
-                new YahtzeeState([1, 2, 3, 4, 5, 6], [7, 8, 9, 10, 11, 12, 13])
-            } />
-
+            <YahtzeeBoard state={scoreCard} />
             <Roll currentRoll={currentRoll} rollsLeft={rollsLeft}/>
             <Goal goalRoll={goalRoll} />
             <div className="Calc">
-                <ProgressBar /*state={
-                    new Progress(myTurn={myTurn},nextTurn={nexTurn})
-                }*/myTurn={myTurn} nextTurn={nextTurn} />
+                <ProgressBar myTurn={myTurn} nextTurn={nextTurn} />
 
             </div>
             <GameBackground />
