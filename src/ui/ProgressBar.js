@@ -13,6 +13,12 @@ class ProgressBar extends Component {
             <Dice {...this.props} />
         </div>
         <NextTurn {...this.props} />
+        <div class="desc2">
+          <br/>
+          <p><span class='red die2'>&#x2684;</span>: The AI is rerolling it</p>
+          <br/>
+          <p><span class='die2'>&#x2682;</span>: The AI is keeping it</p>
+        </div>
       </div>
       </>;
   }

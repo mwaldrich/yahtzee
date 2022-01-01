@@ -14,3 +14,15 @@
     padding-left: 10%;
     align-items: center;
 }
+
+.red {
+    color: red;
+}
+
+.desc2 {
+    font-size: 2rem;
+}
+
+.die2 {
+    font-size: 4rem;
+}
