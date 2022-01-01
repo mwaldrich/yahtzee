@@ -3,7 +3,7 @@
     height: 125px;
     font-size: 8.5rem;
     margin-top: 0 auto;
-    float: left;
+    float: right;
     margin-right: 26%;
     /*border:1px solid black;*/
     animation-name: spin;
@@ -18,7 +18,7 @@
     height: 125px;
     font-size: 8.5rem;
     margin-top: 0 auto;
-    float: left;
+    float: right;
     margin-right: 26%;
   }
   
@@ -30,3 +30,11 @@
           transform:rotate(360deg);
       }
   }
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}

@@ -11,8 +11,8 @@
 
 .diceRoll {
     background-color: white;
-    padding-left: 10%;
     align-items: center;
+    float: none;
 }
 
 .red {
