@@ -136,7 +136,7 @@ body {
   width: 35%;
 }
 .desc .die {
-  font-size: 2rem;
+  font-size: 4rem;
   line-height: 1;
 }
 .how-to-score:empty::after {
