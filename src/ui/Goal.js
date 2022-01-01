@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Roll.css'; // Tell webpack that Button.js uses these styles
+import { playToString } from './utils';
 
 class Goal extends Component {
   render() {
@@ -13,7 +14,7 @@ class Goal extends Component {
                 <div className="die">{this.die[this.props.goalRoll[2]-1]}</div>
                 <div className="die">{this.die[this.props.goalRoll[3]-1]}</div>
                 <div className="die">{this.die[this.props.goalRoll[4]-1]}</div>
-                <div className="dieTitle">Play</div>
+                <div className="dieTitle">{playToString(this.props.goalPlay)}</div>
                 <div className="dieTitle">Goal</div>
             </div>
       </>;
