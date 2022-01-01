@@ -90,19 +90,26 @@ export class Backend {
         // - goalRoll
         // - goalPlay
         // - actualPlay
+        // - rollsRemaining
 
         let currentPlay, goalRoll, goalPlay, actualPlay;
 
         // If we are out of rolls, the turn is over!
         if (this.rollsRemaining == 0) {
-            currentPlay = score(this.roll, this.scorecard);
+            currentPlay = score(this.roll, this.scorecard)[0];
             goalRoll = this.roll;
             goalPlay = currentPlay;
             actualPlay = currentPlay;
+            this.calculatedPlay = null;
 
             // process the next turn
             this.processNextTurn();
         } else {
+            // If 3 rolls are remaining, start us out with a fresh roll
+            if (this.rollsRemaining == 3) {
+                this.roll = freshRoll();
+            }
+
             // If there was a previous play calculated, perform it.
             // Then get to work on the next one.
             if (this.calculatedPlay) {
@@ -110,9 +117,13 @@ export class Backend {
             }
 
             // Find the next play
-            let [keep, goalRoll, goalPlay] = this.minmax();
-            currentPlay = score(this.roll, this.scorecard);
+            let [keep, gRoll, gPlay] = this.minmax();
+            goalRoll = gRoll;
+            goalPlay = gPlay;
+            currentPlay = score(this.roll, this.scorecard)[0];
+            this.calculatedPlay = keep;
             actualPlay = null;
+            this.rollsRemaining--;
         }
 
         return [
@@ -121,7 +132,8 @@ export class Backend {
             currentPlay,
             goalRoll,
             goalPlay,
-            actualPlay
+            actualPlay,
+            this.rollsRemaining,
         ];
     }
 
@@ -140,8 +152,10 @@ export class Backend {
 
 
         // Iterate through all keep masks
-        for (let keep in allKeepMasks()) {
-            plays[keep] = [];
+        let keepMasks = allKeepMasks();
+        for (let keepIdx = 0; keepIdx < 32; keepIdx++) {
+            let keep = keepMasks[keepIdx];
+            plays[keepIdx] = [];
 
             // Iterate through changing every die value.
             // Calculate the minimum and maximums inside.
@@ -160,13 +174,10 @@ export class Backend {
                                 ];
 
                                 // score
-                                let s = score(r, this.scorecard)[0];
+                                let s = score(r, this.scorecard)[1];
 
                                 // add to plays
-                                if (keep[0] && keep[1] && keep[4]) {
-                                    console.log(`Roll r = ${r}`);
-                                }
-                                plays[keep].push([s, r])
+                                plays[keepIdx].push([s, r])
                             }
                         }
                     }
@@ -183,18 +194,19 @@ export class Backend {
         let sortedKeeps = [];
 
         // Figure out minimum and maximum scores for each play
-        for (let keep in allKeepMasks()) {
+        for (let keepIdx = 0; keepIdx < 32; keepIdx++) {
+            let keep = keepMasks[keepIdx];
             let min = Number.MAX_SAFE_INTEGER;
             let max = Number.MIN_SAFE_INTEGER;
             let goalRoll;
 
-            for (let play in plays[keep]) {
+            for (let play of plays[keepIdx]) {
                 if (play[0] < min) {
                     min = play[0];
                 }
 
                 if (play[0] > max) {
-                    console.log(`New max found play=${JSON.stringify(play)}`)
+                    /* console.log(`New max found play=${JSON.stringify(play)}`) */
                     max = play[0];
                     goalRoll = play[1];
                 }
@@ -215,12 +227,12 @@ export class Backend {
                 }
             });
 
-        console.error(`Sorted keeps: ${JSON.stringify(sortedKeeps)}`)
+        /* console.error(`Sorted keeps: ${JSON.stringify(sortedKeeps, null, 2)}`) */
 
         // SELECT THE PLAY
         let finalPlay = sortedKeeps[0];
 
-        return [finalPlay[0], finalPlay[3], score(finalPlay[3], this.scorecard)];
+        return [finalPlay[0], finalPlay[3], score(finalPlay[3], this.scorecard)[0]];
     }
 
     /**
