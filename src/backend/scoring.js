@@ -27,7 +27,7 @@ export function score(roll, scorecard) {
     // Step 2: Filter out the plays we've already scored, then score our new roll on those plays
     // Type: [play, value]
     let scoredPlays = scorecard
-        .filter(([play, previouslyScoredValue]) => previouslyScoredValue != undefined)
+        .filter(([play, previouslyScoredValue]) => previouslyScoredValue != null)
         .map(([play, _]) => [play, scorePlay(play, roll)]);
 
     // Return the highest scoring play
