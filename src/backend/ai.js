@@ -83,7 +83,7 @@ export class Backend {
         this.scorecard = [null, null, null, null, null, null, null, null, null, null, null, null, null];
     }
 
-    nextTurn() {
+    async nextTurn() {
         // have to return: 
         // - scoreCard
         // - currentRoll
@@ -93,7 +93,7 @@ export class Backend {
         // - actualPlay
         // - rollsRemaining
 
-        let currentPlay, goalRoll, goalPlay, actualPlay;
+        let keepmask, currentPlay, goalRoll, goalPlay, actualPlay;
 
         // If we are out of rolls, the turn is over!
         if (this.rollsRemaining == 0) {
@@ -102,6 +102,7 @@ export class Backend {
             goalPlay = currentPlay;
             actualPlay = currentPlay;
             this.calculatedPlay = null;
+            keepmask = [true, true, true, true, true];
 
             // process the next turn
             this.processNextTurn();
@@ -118,11 +119,12 @@ export class Backend {
             }
 
             // Find the next play
-            let [keep, gRoll, gPlay] = this.minmax();
+            let [k, gRoll, gPlay] = await this.minmax();
+            keepmask = k;
             goalRoll = gRoll;
             goalPlay = gPlay;
             currentPlay = score(this.roll, this.scorecard)[0];
-            this.calculatedPlay = keep;
+            this.calculatedPlay = k;
             actualPlay = null;
             this.rollsRemaining--;
         }
@@ -135,6 +137,7 @@ export class Backend {
             goalPlay,
             actualPlay,
             this.rollsRemaining,
+            keepmask
         ];
     }
 
@@ -147,7 +150,7 @@ export class Backend {
      * 
      * @returns keep mask, goal roll, and goal play
      */
-    minmax() {
+    async minmax() {
         // keepmask -> [[score, roll]]
         let plays = {};
 

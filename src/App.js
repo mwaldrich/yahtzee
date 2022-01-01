@@ -24,34 +24,42 @@ function App() {
     let [rollsLeft, setRollsLeft] = useState(backend.rollsRemaining);
     let [scoreCard, setScoreCard] = useState(new YahtzeeState())
     let [actualPlay, setActualPlay] = useState(backend.actualPlay);
+    let [keepmask, setKeepmask] = useState([true, true, true, true, true]);
     // ....... for the other ones
 
-    function nextTurn() {
+    function sleep(ms) {
+        return new Promise((res, rej) => {
+            setTimeout(() => {res()}, ms)
+        }) 
+    }
+
+    async function nextTurn() {
         // Let the button know the AI is working...
         setMyTurn(true);
 
+        await sleep(1000);
+
         // Calculate move in the background
-            new Promise((res, rej) => {
-                let [scoreCard, currentRoll, currentPlay, goalRoll, goalPlay, actualPlay, rollsLeft] = backend.nextTurn();
-                // Update UI with currentRoll, currentPlay, etc.
-                setScoreCard(scoreCard);
-                setCurrentRoll(currentRoll);
-                setCurrentPlay(currentPlay);
-                setGoalRoll(goalRoll);
-                setGoalPlay(goalPlay);
-                setActualPlay(actualPlay);
-                setRollsLeft(rollsLeft);
-                setMyTurn(false);
-            })
+        let [scoreCard, currentRoll, currentPlay, goalRoll, goalPlay, actualPlay, rollsLeft, keepmask] = await backend.nextTurn();
+        // Update UI with currentRoll, currentPlay, etc.
+        setScoreCard(scoreCard);
+        setCurrentRoll(currentRoll);
+        setCurrentPlay(currentPlay);
+        setGoalRoll(goalRoll);
+        setGoalPlay(goalPlay);
+        setActualPlay(actualPlay);
+        setRollsLeft(rollsLeft);
+        setMyTurn(false);
+        setKeepmask(keepmask);
     }
 
     return (
         <div className="App">
-            <YahtzeeBoard state={scoreCard} actualPlay={actualPlay}/>
-            <Roll currentRoll={currentRoll.sort()} currentPlay={currentPlay} rollsLeft={rollsLeft}/>
-            <Goal goalRoll={goalRoll.sort()} goalPlay={goalPlay} />
+            <YahtzeeBoard state={scoreCard} actualPlay={actualPlay} />
+            <Roll currentRoll={currentRoll} currentPlay={currentPlay} rollsLeft={rollsLeft} keepmask={keepmask} />
+            <Goal goalRoll={goalRoll} goalPlay={goalPlay} rollsLeft={rollsLeft}/>
             <div className="Calc">
-                <ProgressBar myTurn={myTurn} nextTurn={nextTurn} />
+                <ProgressBar myTurn={myTurn} nextTurn={nextTurn} rollsLeft={rollsLeft} myTurn={myTurn} />
 
             </div>
             <GameBackground />

@@ -15,7 +15,7 @@ class Goal extends Component {
                 <div className="die">{this.die[this.props.goalRoll[3]-1]}</div>
                 <div className="die">{this.die[this.props.goalRoll[4]-1]}</div>
                 <div className="dieTitle">{playToString(this.props.goalPlay)}</div>
-                <div className="dieTitle">Goal</div>
+                <div className="dieTitle">{this.props.rollsLeft == 0 ? "Final" : "Goal"}</div>
             </div>
       </>;
   }

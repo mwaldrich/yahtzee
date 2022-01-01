@@ -13,6 +13,14 @@
     min-height: 100%;
   }
 
+  div.notspin{
+    width: 60px;
+    height: 125px;
+    font-size: 8.5rem;
+    margin-top: 0 auto;
+    float: left;
+    margin-right: 26%;
+  }
   
   @keyframes spin {
       from {

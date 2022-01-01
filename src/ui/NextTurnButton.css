@@ -1,9 +1,6 @@
 .nextturn {
     background-color: orange;
-    height: 50%;
-    margin: auto;
-    margin-top: 3em;
-    padding-top: 1em;
+    font-size: 3rem;
     text-align: center;
     width: 50%;
 }

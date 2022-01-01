@@ -7,11 +7,10 @@ class ProgressBar extends Component {
   render() {
       return <>
       <div className="prog">
-        <h4>Calculating: </h4>
-        <progress id="calc" value="32" max="100"> 32% </progress>
+        <h4>Calculate: </h4>
         <div className="diceRoll">
-            <Dice />
-            <Dice />
+            <Dice {...this.props} />
+            <Dice {...this.props} />
         </div>
         <NextTurn {...this.props} />
       </div>
