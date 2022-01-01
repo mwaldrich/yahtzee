@@ -1,6 +1,6 @@
 // Testing
 
-import { allKeepMasks } from "./ai"
+import { allKeepMasks, Backend } from "./ai"
 
 test('allKeepMasks looks ok', () => {
     const masks = allKeepMasks();
@@ -14,4 +14,17 @@ test('allKeepMasks looks ok', () => {
         }
     }))
     expect(totalTrues).toBe(80);
+})
+
+test('simulate 3 turns', () => {
+    let backend = new Backend();
+
+    console.log("Turn #1!")
+    console.log(`State: ${backend.nextTurn()}`)
+
+    console.log("Turn #2!")
+    console.log(`State: ${backend.nextTurn()}`)
+
+    console.log("Turn #3!")
+    console.log(`State: ${backend.nextTurn()}`)
 })

@@ -110,7 +110,7 @@ export class Backend {
             }
 
             // Find the next play
-            let [keep, goalRoll, goalPlay] = minmax();
+            let [keep, goalRoll, goalPlay] = this.minmax();
             currentPlay = score(this.roll, this.scorecard);
             actualPlay = null;
         }
@@ -140,7 +140,7 @@ export class Backend {
 
 
         // Iterate through all keep masks
-        for (keep in allKeepMasks()) {
+        for (let keep in allKeepMasks()) {
             plays[keep] = [];
 
             // Iterate through changing every die value.
@@ -160,9 +160,12 @@ export class Backend {
                                 ];
 
                                 // score
-                                let s = score(r, this.scorecard);
+                                let s = score(r, this.scorecard)[0];
 
                                 // add to plays
+                                if (keep[0] && keep[1] && keep[4]) {
+                                    console.log(`Roll r = ${r}`);
+                                }
                                 plays[keep].push([s, r])
                             }
                         }
@@ -170,6 +173,7 @@ export class Backend {
                 }
             }
         }
+        // console.error(`Plays: ${JSON.stringify(plays)}`)
 
 
         // keepmask -> [[score, roll]]
@@ -190,6 +194,7 @@ export class Backend {
                 }
 
                 if (play[0] > max) {
+                    console.log(`New max found play=${JSON.stringify(play)}`)
                     max = play[0];
                     goalRoll = play[1];
                 }
@@ -209,6 +214,8 @@ export class Backend {
                     return max2 - max1;
                 }
             });
+
+        console.error(`Sorted keeps: ${JSON.stringify(sortedKeeps)}`)
 
         // SELECT THE PLAY
         let finalPlay = sortedKeeps[0];
