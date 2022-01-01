@@ -69,12 +69,18 @@ class Backend {
         // The initial roll
         this.roll = reroll([1, 1, 1, 1, 1], [false, false, false, false, false]);
 
-        // Empty scoreboard
-        this.scoreboard = [null, null, null, null, null, null, null, null, null, null, null, null, null];
+        // Empty scorecard
+        this.scorecard = [null, null, null, null, null, null, null, null, null, null, null, null, null];
     }
 
     nextTurn() {
-        
+        // have to return: 
+        // - scoreCard
+        // - currentRoll
+        // - currentPlay
+        // - goalRoll
+        // - goalPlay
+        // - actualPlay
     }
 
 }

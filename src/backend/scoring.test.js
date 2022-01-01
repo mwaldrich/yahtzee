@@ -136,7 +136,7 @@ test('Play #12: Chance: #4', () => {
 // Tests for score
 ////////////////////////////////////
 
-const emptyScoreboard = [
+const emptyScorecard = [
     null,
     null,
     null,
@@ -153,11 +153,11 @@ const emptyScoreboard = [
 ];
 
 // Can we determine the best scoring method for a roll?
-test('score: Empty scoreboard yahtzee of aces', () => {
-    expect(score([1, 1, 1, 1, 1], emptyScoreboard)).toEqual([11, 50]);
+test('score: Empty scorecard yahtzee of aces', () => {
+    expect(score([1, 1, 1, 1, 1], emptyScorecard)).toEqual([11, 50]);
 });
 test('score: 3 of a kind (all sixes). Yahtzee, 4 of a kind, and sixes taken.', () => {
-    let scoreboard = [
+    let scorecard = [
         null,
         null,
         null,
@@ -172,15 +172,15 @@ test('score: 3 of a kind (all sixes). Yahtzee, 4 of a kind, and sixes taken.', (
         50,
         null,
     ];
-    expect(score([6, 6, 6, 6, 6], scoreboard)).toEqual([6, 30]);
+    expect(score([6, 6, 6, 6, 6], scorecard)).toEqual([6, 30]);
 });
 test('score: good full house, bad everything else', () => {
     // Should count as full house. Not the 1s, the 2s, or a 3 of a kind.
-    expect(score([1, 1, 1, 2, 2], emptyScoreboard)).toEqual([8, 25]);
+    expect(score([1, 1, 1, 2, 2], emptyScorecard)).toEqual([8, 25]);
 });
 test('score: will take chance if it has to', () => {
     // all the good ways to play a 6 yahtzee are taken
-    let scoreboard = [
+    let scorecard = [
         null,
         null,
         null,
@@ -195,5 +195,5 @@ test('score: will take chance if it has to', () => {
         50,
         null,
     ]
-    expect(score([6, 6, 6, 6, 6], scoreboard)).toEqual([12, 30]);
+    expect(score([6, 6, 6, 6, 6], scorecard)).toEqual([12, 30]);
 });
