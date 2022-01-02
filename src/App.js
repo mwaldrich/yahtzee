@@ -7,12 +7,53 @@ import YahtzeeBoard from './ui/YahtzeeBoard';
 import Roll from './ui/Roll'
 import Goal from './ui/Goal'
 import ProgressBar from './ui/ProgressBar'
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+
+import s0 from "./sounds/0.mp3";
+import s1 from "./sounds/1.mp3";
+import s2 from "./sounds/2.mp3";
+import s3 from "./sounds/3.mp3";
+import s4 from "./sounds/4.mp3";
+import s5 from "./sounds/5.mp3";
+import s6 from "./sounds/6.mp3";
+import s7 from "./sounds/7.mp3";
+import s8 from "./sounds/8.mp3";
+import s9 from "./sounds/9.mp3";
+import s10 from "./sounds/10.mp3";
+import s11 from "./sounds/11.mp3";
+import s12 from "./sounds/12.mp3";
+
+const soundsArray = [
+    s0,
+    s1,
+    s2,
+    s3,
+    s4,
+    s5,
+    s6,
+    s7,
+    s8,
+    s9,
+    s10,
+    s11,
+    s12
+];
 
 /*
 
             */
 const backend = new Backend();
+
+function audio(audionum) {
+    const soundsPath = "./assets/sounds/";
+    //converts the actual num to the name of it's corresponding audio file
+    if(audionum){
+        // let path = "../../sounds/"
+        return soundsPath.concat(audionum.toString(10).concat('.', "mp3"));
+    } else {
+        return soundsPath + "0.mp3";
+    }
+}
 
 function App() {
     // Define state
@@ -25,6 +66,7 @@ function App() {
     let [scoreCard, setScoreCard] = useState(new YahtzeeState())
     let [actualPlay, setActualPlay] = useState(backend.actualPlay);
     let [keepmask, setKeepmask] = useState([true, true, true, true, true]);
+    let soundEffectRef = useRef("soundEffectRef");
     // ....... for the other ones
 
     function sleep(ms) {
@@ -65,9 +107,19 @@ function App() {
         setKeepmask(keepmask);
     }
 
+
+    // console.log(`audio actualPlay: ${this.audio(this.props.actualPlay)} `)
+    if(rollsLeft === 0) {
+        if (soundEffectRef.current.play) {
+        soundEffectRef.current.src = soundsArray[actualPlay];
+        soundEffectRef.current.play();
+        }
+    }
+
     return (
         <div className="App">
-            <YahtzeeBoard state={scoreCard} actualPlay={actualPlay} />
+            <audio ref={soundEffectRef} type="audio/mp3"></audio>
+            <YahtzeeBoard state={scoreCard} actualPlay={actualPlay} myTurn={myTurn}/>
             <Roll currentRoll={currentRoll} currentPlay={currentPlay} rollsLeft={rollsLeft} keepmask={keepmask} />
             <Goal goalRoll={goalRoll} goalPlay={goalPlay} rollsLeft={rollsLeft}/>
             <div className="Calc">
