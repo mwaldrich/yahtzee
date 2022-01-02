@@ -7,8 +7,8 @@ class Goal extends Component {
     console.log(`Goal: this.props = ${JSON.stringify(this.props)}`)
     this.die = ["\u2680","\u2681","\u2682","\u2683","\u2684","\u2685"]
       return <>
-            <div className={`roll ${this.props.rollsLeft == 0 ? "final" : ""}`}>
-                <div className={`dieTitle ${this.props.rollsLeft == 0 ? "final" : ""}`}><b>{this.props.rollsLeft == 0 ? "Final" : "Goal"}</b></div>
+            <div className={`roll ${this.props.rollsLeft == 3 ? "final" : ""}`}>
+                <div className={`dieTitle ${this.props.rollsLeft == 3 ? "final" : ""}`}><b>{this.props.rollsLeft == 3 ? "Final" : "Goal"}</b></div>
                 <div className="diePlay"><i>{playToString(this.props.goalPlay)}</i></div>
                 <div className="dieTitle"><br/></div>
                 <div className="die">{this.die[this.props.goalRoll[0]-1]}</div>
