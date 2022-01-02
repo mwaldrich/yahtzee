@@ -9,8 +9,8 @@ class ProgressBar extends Component {
       <div className="prog">
         <h4>Calculate: </h4>
         <div className="diceRoll">
-            <Dice {...this.props} />
-            <Dice {...this.props} />
+            <Dice class="left" {...this.props} />
+            <Dice class="right" {...this.props} />
         </div>
         <NextTurn {...this.props} />
         <div class="desc2">
