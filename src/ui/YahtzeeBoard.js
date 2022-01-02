@@ -52,7 +52,6 @@ class YahtzeeBoard extends Component {
 
 
     render() {
-      console.log(`YahtzeeBoard: this.props = ${JSON.stringify(this.props)}`);
         // The yahtzee state is avaiable with
         //     this.props.state
         return <div class="yahtzee">
