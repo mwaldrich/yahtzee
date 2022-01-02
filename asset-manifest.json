@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/yahtzee/static/css/main.90ba7340.css",
-    "main.js": "/yahtzee/static/js/main.c0d6180f.js",
+    "main.js": "/yahtzee/static/js/main.265a09f2.js",
     "static/js/787.0972068a.chunk.js": "/yahtzee/static/js/787.0972068a.chunk.js",
     "static/media/11.mp3": "/yahtzee/static/media/11.3396b7065cb900a4ee85.mp3",
     "static/media/12.mp3": "/yahtzee/static/media/12.d5c9f972cb03fad10cb6.mp3",
@@ -13,17 +13,18 @@
     "static/media/6.mp3": "/yahtzee/static/media/6.90a77e5102244896d0c3.mp3",
     "static/media/10.mp3": "/yahtzee/static/media/10.dacdb83586edad19f6f5.mp3",
     "static/media/4.mp3": "/yahtzee/static/media/4.306bfbd53c7380d97533.mp3",
+    "static/media/roll1.mp3": "/yahtzee/static/media/roll1.e1f71a9c01eff9c6b4e3.mp3",
     "static/media/3.mp3": "/yahtzee/static/media/3.9cf22c15e1d038024958.mp3",
     "static/media/2.mp3": "/yahtzee/static/media/2.55844d8e14707783c66a.mp3",
     "static/media/1.mp3": "/yahtzee/static/media/1.cb3855997e631ee31e2b.mp3",
     "static/media/logo.svg": "/yahtzee/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/yahtzee/index.html",
     "main.90ba7340.css.map": "/yahtzee/static/css/main.90ba7340.css.map",
-    "main.c0d6180f.js.map": "/yahtzee/static/js/main.c0d6180f.js.map",
+    "main.265a09f2.js.map": "/yahtzee/static/js/main.265a09f2.js.map",
     "787.0972068a.chunk.js.map": "/yahtzee/static/js/787.0972068a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.90ba7340.css",
-    "static/js/main.c0d6180f.js"
+    "static/js/main.265a09f2.js"
   ]
 }
