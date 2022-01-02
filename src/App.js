@@ -9,6 +9,7 @@ import Goal from './ui/Goal'
 import ProgressBar from './ui/ProgressBar'
 import { useState, useRef } from 'react';
 
+//import sounds
 import s0 from "./sounds/0.mp3";
 import s1 from "./sounds/1.mp3";
 import s2 from "./sounds/2.mp3";
@@ -22,6 +23,11 @@ import s9 from "./sounds/9.mp3";
 import s10 from "./sounds/10.mp3";
 import s11 from "./sounds/11.mp3";
 import s12 from "./sounds/12.mp3";
+import r1 from "./sounds/roll1.mp3";
+import r2 from "./sounds/roll1.mp3";
+import r3 from "./sounds/roll1.mp3";
+import r4 from "./sounds/roll1.mp3";
+import r5 from "./sounds/roll1.mp3";
 
 const soundsArray = [
     s0,
@@ -37,6 +43,14 @@ const soundsArray = [
     s10,
     s11,
     s12
+];
+
+const rollSoundsArray = [
+    r1,
+    r2,
+    r3,
+    r4,
+    r5
 ];
 
 /*
@@ -67,6 +81,7 @@ function App() {
     let [actualPlay, setActualPlay] = useState(backend.actualPlay);
     let [keepmask, setKeepmask] = useState([true, true, true, true, true]);
     let soundEffectRef = useRef("soundEffectRef");
+    let rollEffectRef = useRef("rollEffectRef")
     // ....... for the other ones
 
     function sleep(ms) {
@@ -89,7 +104,11 @@ function App() {
     async function nextTurn() {
         // Let the button know the AI is working...
         setMyTurn(true);
-
+        //this random does not work for some god forsaken reason
+        let randSound = rollSoundsArray[Math.floor(Math.random() * 4)]
+        console.log(`random number: ${randSound}`)
+        rollEffectRef.current.src = randSound
+        rollEffectRef.current.play();
         await sleep(1000);
 
         // Calculate move in the background
@@ -111,14 +130,15 @@ function App() {
     // console.log(`audio actualPlay: ${this.audio(this.props.actualPlay)} `)
     if(rollsLeft === 0) {
         if (soundEffectRef.current.play) {
-        soundEffectRef.current.src = soundsArray[actualPlay];
-        soundEffectRef.current.play();
+            soundEffectRef.current.src = soundsArray[actualPlay];
+            soundEffectRef.current.play();
         }
     }
 
     return (
         <div className="App">
             <audio ref={soundEffectRef} type="audio/mp3"></audio>
+            <audio ref={rollEffectRef} type="audio/mp3"></audio>
             <YahtzeeBoard state={scoreCard} actualPlay={actualPlay} myTurn={myTurn}/>
             <Roll currentRoll={currentRoll} currentPlay={currentPlay} rollsLeft={rollsLeft} keepmask={keepmask} />
             <Goal goalRoll={goalRoll} goalPlay={goalPlay} rollsLeft={rollsLeft}/>
