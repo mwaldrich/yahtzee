@@ -18,6 +18,11 @@ class ProgressBar extends Component {
           <p><span class='red die2'>&#x2684;</span>: The AI is rerolling it</p>
           <br/>
           <p><span class='die2'>&#x2682;</span>: The AI is keeping it</p>
+          <br/>
+          <hr/>
+          <p class="sig">User Interface: Spar0w</p>
+          <p class="sig">Backend/AI: Mark Aldrich</p>
+          <p class="sig"><a href="https://github.com/mwaldrich/yahtzee">Source</a></p>
         </div>
       </div>
       </>;
