@@ -23,6 +23,7 @@ class ProgressBar extends Component {
           <p class="sig">User Interface: Spar0w</p>
           <p class="sig">Backend/AI: Mark Aldrich</p>
           <p class="sig"><a href="https://github.com/mwaldrich/yahtzee">Source</a></p>
+          <p class="sig">Made with ❤️ in Vermont</p>
         </div>
       </div>
       </>;
