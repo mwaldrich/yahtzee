@@ -2,7 +2,7 @@
 
 An AI that can beat you in Yahtzee
 
-[Play along with it here!](mwaldrich.io/yahtzee)
+[Play along with it here!](https://mwaldrich.io/yahtzee)
 
 Writen by Mark Aldrich and Sam Barrows.
 
