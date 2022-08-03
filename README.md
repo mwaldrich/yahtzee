@@ -2,6 +2,8 @@
 
 An AI that can beat you in Yahtzee
 
+[Play along with it here!](mwaldrich.io/yahtzee)
+
 Writen by Mark Aldrich and Sam Barrows.
 
 # Building
